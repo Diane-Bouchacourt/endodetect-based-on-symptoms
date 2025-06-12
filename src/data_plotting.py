@@ -1,12 +1,11 @@
-import math
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 from itertools import combinations
 from scipy.spatial.distance import jaccard
-import pdb
+import data_processing
+
 
 def plot_spearson(data):
 
@@ -63,11 +62,8 @@ def plot_jaccard(data):
     # plt.savefig(path)
     plt.show()
 
-if __name__ == '__main__':
 
-    data = pd.read_excel("../data/dataset.xlsx")
-    data["Endometriosis"] = data["label"]
+if __name__ == "__main__":
 
-    data = data.drop(data.columns[0], axis=1)  # remove first columns
-    data = data.drop(["row", "label"], axis=1)
+    data = data_processing.prepare_data()
     plot_spearson(data)
